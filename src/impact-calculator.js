@@ -8,8 +8,15 @@ const impactCalculator = (data) => {
 
   const currentlyInfected = reportedCases * 10;
   const infectionsByRequestedTime = currentlyInfected * noOfInfectedPeople;
+  const severeCasesByRequestedTime = infectionsByRequestedTime * 0.15;
+  const hospitalBedsByRequestedTime = totalHospitalBeds - Math.round(severeCasesByRequestedTime);
 
-  return { currentlyInfected, infectionsByRequestedTime };
+  return {
+    currentlyInfected,
+    infectionsByRequestedTime,
+    severeCasesByRequestedTime,
+    hospitalBedsByRequestedTime
+  };
 };
 
 export default impactCalculator;
