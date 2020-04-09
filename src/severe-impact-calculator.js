@@ -1,8 +1,6 @@
-const severeImpactCalculator = (data) => {
-  const {
-    region, periodType, timeToElapse, reportedCases, population, totalHospitalBeds // eslint-disable-line no-unused-vars, max-len
-  } = data;
-
+const severeImpactCalculator = ({
+  region, periodType, timeToElapse, reportedCases, population, totalHospitalBeds // eslint-disable-line no-unused-vars, max-len
+}) => {
   const daysMultiplier = periodType === 'months' ? 30 : (periodType === 'weeks' ? 7 : 1);// eslint-disable-line no-nested-ternary
   const totalTimeToElapse = timeToElapse * daysMultiplier;
   const noOfInfectedPeople = 2 ** (totalTimeToElapse / 3);
