@@ -4,18 +4,28 @@ const impactCalculator = (data) => {
   } = data;
 
   const daysMultiplier = periodType === 'months' ? 30 : (periodType === 'weeks' ? 7 : 1);// eslint-disable-line no-nested-ternary
-  const noOfInfectedPeople = 2 ** ((timeToElapse * daysMultiplier) / 3);
+  const totalTimeToElapse = timeToElapse * daysMultiplier;
+  const noOfInfectedPeople = 2 ** (totalTimeToElapse / 3);
 
   const currentlyInfected = reportedCases * 10;
   const infectionsByRequestedTime = currentlyInfected * noOfInfectedPeople;
+
   const severeCasesByRequestedTime = infectionsByRequestedTime * 0.15;
   const hospitalBedsByRequestedTime = totalHospitalBeds - Math.round(severeCasesByRequestedTime);
+  const casesForICUByRequestedTime = infectionsByRequestedTime * 0.05;
+  const casesForVentilatorsByRequestedTime = infectionsByRequestedTime * 0.02;
+
+  // eslint-disable-next-line max-len
+  const dollarsInFlight = infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * totalTimeToElapse;
 
   return {
     currentlyInfected,
     infectionsByRequestedTime,
     severeCasesByRequestedTime,
-    hospitalBedsByRequestedTime
+    hospitalBedsByRequestedTime,
+    casesForICUByRequestedTime,
+    casesForVentilatorsByRequestedTime,
+    dollarsInFlight
   };
 };
 
