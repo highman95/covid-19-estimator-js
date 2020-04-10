@@ -6,15 +6,15 @@ const severeImpactCalculator = ({
   const noOfInfectedPeople = 2 ** (totalTimeToElapse / 3);
 
   const currentlyInfected = reportedCases * 50;
-  const infectionsByRequestedTime = currentlyInfected * noOfInfectedPeople;
+  const infectionsByRequestedTime = Math.round(currentlyInfected * noOfInfectedPeople);
 
-  const severeCasesByRequestedTime = infectionsByRequestedTime * 0.15;
-  const hospitalBedsByRequestedTime = totalHospitalBeds - Math.round(severeCasesByRequestedTime);
-  const casesForICUByRequestedTime = infectionsByRequestedTime * 0.05;
-  const casesForVentilatorsByRequestedTime = infectionsByRequestedTime * 0.02;
+  const severeCasesByRequestedTime = Math.round(infectionsByRequestedTime * 0.15);
+  const hospitalBedsByRequestedTime = totalHospitalBeds - severeCasesByRequestedTime;
+  const casesForICUByRequestedTime = Math.round(infectionsByRequestedTime * 0.05);
+  const casesForVentilatorsByRequestedTime = Math.round(infectionsByRequestedTime * 0.02);
 
   // eslint-disable-next-line max-len
-  const dollarsInFlight = infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * totalTimeToElapse;
+  const dollarsInFlight = Math.round(infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * totalTimeToElapse);
 
   return {
     currentlyInfected,
