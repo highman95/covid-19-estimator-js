@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 // Cross-Origin Resource Sharing (CORS) Middleware
 export const corsHandler = (req, res, next) => { // handle CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,4 +20,32 @@ export const corsHandler = (req, res, next) => { // handle CORS
 export const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused-vars
   const isCSE = ['EvalError', 'Error'].includes(err.name);
   res.status(err.statusCode || (isCSE ? 400 : 500)).send({ status: false, message: err.message });
+};
+
+
+/**
+ * Calculate the time-elapsed in milliseconds
+ *
+ * @param {number} t The time the request started
+ * @tutorial https://slao.io/blog/posts/request-duration/
+ */
+const getTimeElapsedInMs = (t) => (diff = process.hrtime(t)) => ((diff[0] * 1e9 + diff[1]) / 1e6);
+const logFilePath = 'logs.txt';
+
+// Processing-Time-Handler Middleware
+export const processingTimeHandler = (req, res, next) => {
+  fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t0ms\n`);
+  const start = process.hrtime();
+
+  res.on('finish', () => {
+    const timeElapsedInMs = getTimeElapsedInMs(start)();
+    fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${Math.round(timeElapsedInMs)}ms\n`);
+  });
+
+  res.on('close', () => {
+    const timeElapsedInMs = getTimeElapsedInMs(start)();
+    fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${Math.round(timeElapsedInMs)}ms\n`);
+  });
+
+  next();
 };
