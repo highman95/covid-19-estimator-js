@@ -1,10 +1,11 @@
 import express from 'express';
-import { corsHandler, errorHandler } from './middlewares';
+import { corsHandler, errorHandler, processingTimeHandler } from './middlewares';
 import routesHandler from './routes';
 
 const app = express();
 app.use(corsHandler);
 app.use(express.json());// parse request data to JSON object
+app.use(processingTimeHandler);
 
 app.use('/api/v1', routesHandler(express.Router()), errorHandler);
 
