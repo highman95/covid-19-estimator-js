@@ -1,5 +1,5 @@
-import impactCalculator from './impact-calculator';
-import severeImpactCalculator from './severe-impact-calculator';
+import impactCalculator from './calculator/impact';
+import severeImpactCalculator from './calculator/severe-impact';
 
 const covid19ImpactEstimator = (data) => {
   const impact = impactCalculator(data); // best-case estimation
