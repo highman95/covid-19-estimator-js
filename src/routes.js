@@ -1,3 +1,4 @@
+import fs from 'fs';
 import xml from 'xml';
 import covid19ImpactEstimator from './estimator';
 
@@ -12,6 +13,17 @@ const routeHandler = (router) => {
     const isXml = (req.params.format && (req.params.format.toLowerCase() === 'xml'));
 
     res.type(isXml ? 'xml' : 'json').send(isXml ? xml(estimation, { declaration: true }) : estimation);
+  });
+
+  router.get('/on-covid-19/logs', (req, res, next) => {
+    fs.readFile('logs.txt', (err, data) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      res.header('Content-Type', 'text/plain').send(data.toString());
+    });
   });
 
   return router;
