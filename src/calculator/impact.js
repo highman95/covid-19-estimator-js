@@ -3,10 +3,10 @@ const impactCalculator = ({
 }) => {
   const daysMultiplier = periodType === 'months' ? 30 : (periodType === 'weeks' ? 7 : 1);// eslint-disable-line no-nested-ternary
   const totalTimeToElapse = timeToElapse * daysMultiplier;
-  const noOfInfectedPeople = 2 ** (totalTimeToElapse / 3);
+  const noOfInfectedPeople = 2 ** Math.trunc(totalTimeToElapse / 3);
 
   const currentlyInfected = reportedCases * 10;
-  const infectionsByRequestedTime = Math.trunc(currentlyInfected * noOfInfectedPeople);
+  const infectionsByRequestedTime = (currentlyInfected * noOfInfectedPeople);
 
   const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
   const hospitalBedsByRequestedTime = totalHospitalBeds - severeCasesByRequestedTime;
