@@ -8,7 +8,7 @@ app.use(express.json());// parse request data to JSON object
 app.use(processingTimeHandler);
 
 app.use('/api/v1', routesHandler(express.Router()), errorHandler);
-app.get('/', (req, res) => res.send('<h3>COVID-19 Impact Estimator Home</h3>'));
+app.use('/', (req, res) => res.send('<h3>COVID-19 Impact Estimator Home</h3>'));
 
 const server = app.listen(process.env.PORT || 2020, (error) => {
   console.log(error ? `Error: ${error.message}...` : `Listening on PORT: ${server.address().port}`);// eslint-disable-line no-console
