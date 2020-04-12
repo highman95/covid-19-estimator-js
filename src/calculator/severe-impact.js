@@ -3,13 +3,13 @@ const severeImpactCalculator = ({
 }) => {
   const daysMultiplier = periodType === 'months' ? 30 : (periodType === 'weeks' ? 7 : 1);// eslint-disable-line no-nested-ternary
   const totalTimeToElapse = timeToElapse * daysMultiplier;
-  const noOfInfectedPeople = 2 ** Math.trunc(totalTimeToElapse / 3);
 
   const currentlyInfected = reportedCases * 50;
-  const infectionsByRequestedTime = (currentlyInfected * noOfInfectedPeople);
+  const infectionsByRequestedTime = currentlyInfected * (2 ** Math.trunc(totalTimeToElapse / 3));
 
   const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
-  const hospitalBedsByRequestedTime = totalHospitalBeds - severeCasesByRequestedTime;
+  const hospitalBedsByRequestedTime = Math.trunc(totalHospitalBeds * 0.35 - severeCasesByRequestedTime);// eslint-disable-line max-len
+
   const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
   const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
 
