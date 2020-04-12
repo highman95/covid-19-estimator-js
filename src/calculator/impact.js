@@ -14,7 +14,7 @@ const impactCalculator = ({
   const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
 
   // eslint-disable-next-line max-len
-  const dollarsInFlight = Math.trunc(infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * totalTimeToElapse);
+  const dollarsInFlight = Math.trunc((infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) / totalTimeToElapse);
 
   return {
     currentlyInfected,
