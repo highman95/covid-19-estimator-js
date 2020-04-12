@@ -24,7 +24,7 @@ const routeHandler = (router) => {
         return;
       }
 
-      res.header('Content-Type', 'text/plain').send(data.toString());
+      res.header('Content-Type', 'text/plain').send(data.toString().trim());
     });
   });
 

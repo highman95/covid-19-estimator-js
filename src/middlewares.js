@@ -34,7 +34,6 @@ const logFilePath = 'logs.txt';
 
 // Processing-Time-Handler Middleware
 export const processingTimeHandler = (req, res, next) => {
-  fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t0ms\n`);
   const start = process.hrtime();
 
   res.on('finish', () => {
