@@ -2,6 +2,8 @@ import fs from 'fs';
 import xml from 'xml';
 import covid19ImpactEstimator from './estimator';
 
+const object2arrayconvertr = (o) => Object.entries(o).map(([k, v]) => ({ [k]: (typeof v === 'object' ? object2arrayconvertr(v) : v) }));
+
 /**
  * Project-wide route-handler
  *
@@ -12,7 +14,7 @@ const routeHandler = (router) => {
     const estimation = covid19ImpactEstimator(req.body);
     const isXml = (req.params.format && (req.params.format.toLowerCase() === 'xml'));
 
-    res.type(isXml ? 'xml' : 'json').send(isXml ? xml(estimation, { declaration: true }) : estimation);
+    res.type(isXml ? 'xml' : 'json').send(isXml ? xml({ estimations: object2arrayconvertr(estimation) }, { declaration: true }) : estimation);
   });
 
   router.get('/on-covid-19/logs', (req, res, next) => {
