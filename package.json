@@ -13,7 +13,7 @@
     "start": "yarn run build && node dist/index.js",
     "dev": "SET NODE_ENV=development && yarn run build && node dist/index.js",
     "watch:dev": "nodemon",
-    "build": "rm -rf dist && ./node_modules/.bin/babel src --out-dir dist --config-file ./babel.config.js --ignore node_modules,.git,.github,babel.config.js,package.json,package-lock.json,yarn-debug.log --copy-files --no-copy-ignored",
+    "build": "rm -rf dist && rm -rf logs.txt && babel src --out-dir dist --config-file ./babel.config.js --ignore node_modules,.git,.github,babel.config.js,package.json,package-lock.json,yarn-debug.log --copy-files --no-copy-ignored",
     "test": "jest",
     "lint": "eslint ./src/"
   },
@@ -34,8 +34,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.2.0",
-    "nodemon": "^2.0.3"
+    "jest": "^25.2.0"
   },
   "browserslist": [
     "last 1 Chrome versions"
