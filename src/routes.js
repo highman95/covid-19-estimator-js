@@ -2,7 +2,7 @@ import fs from 'fs';
 import xml from 'xml';
 import covid19ImpactEstimator from './estimator';
 
-const object2arrayconvertr = (o) => Object.entries(o).map(([k, v]) => ({ [k]: (typeof v === 'object' ? object2arrayconvertr(v) : v) }));
+const object2arrayconvertr = (o) => (o ? Object.entries(o).map(([k, v]) => ({ [k]: (typeof v === 'object' ? object2arrayconvertr(v) : v) })) : o);
 
 /**
  * Project-wide route-handler
@@ -18,11 +18,8 @@ const routeHandler = (router) => {
   });
 
   router.get('/on-covid-19/logs', (req, res, next) => {
-    fs.readFile('logs.txt', (err, data) => {
-      if (err) {
-        next(err);
-        return;
-      }
+    fs.readFile('logs.txt', (err, data) => { // eslint-disable-line consistent-return
+      if (err) return next(err);
 
       res.type('text').send(data.toString().trim());
     });
