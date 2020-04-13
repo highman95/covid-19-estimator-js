@@ -38,12 +38,12 @@ export const processingTimeHandler = (req, res, next) => {
 
   res.on('finish', () => {
     const timeElapsedInMs = getTimeElapsedInMs(start)();
-    fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${Math.round(timeElapsedInMs)}ms\n`);
+    fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${Math.round(timeElapsedInMs).toString().padStart(2, '0')}ms\n`);
   });
 
   res.on('close', () => {
     const timeElapsedInMs = getTimeElapsedInMs(start)();
-    fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${Math.round(timeElapsedInMs)}ms\n`);
+    fs.appendFileSync(logFilePath, `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${Math.round(timeElapsedInMs).toString().padStart(2, '0')}ms\n`);
   });
 
   next();
