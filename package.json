@@ -35,10 +35,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.2.0",
-    "nodemon": "^2.0.3",
-    "properties-reader": "^1.0.0",
-    "puppeteer": "^2.1.1"
+    "jest": "^25.2.0"
   },
   "browserslist": [
     "last 1 Chrome versions"
