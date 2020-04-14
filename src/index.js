@@ -1,9 +1,11 @@
 import express from 'express';
+import compression from 'compression';
 import path from 'path';
 import { corsHandler, errorHandler, processingTimeHandler } from './middlewares';
 import routesHandler from './routes';
 
 const app = express();
+app.use(compression());
 app.use(corsHandler);
 app.use(express.json());// parse request data to JSON object
 app.use(processingTimeHandler);
