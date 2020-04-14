@@ -8,8 +8,9 @@
     <meta name="keyword" content="Covid-19, Covid19, Impact-Estimator" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="../assets/css/app.css" />
     <title>COVID-19 Impact Estimation</title>
 </head>
 
@@ -61,34 +62,34 @@
             <p class="lead text-muted">
                 Kindly fill the form carefully to get accurate results...
             </p>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="data-population" class="font-weight-bold">population:</label>
                     <input type="text" data-population="" id="data-population" class="form-control" maxlength="15" />
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="data-time-to-elapse" class="font-weight-bold">timeToElapse:</label>
                     <input type="text" data-time-to-elapse="" id="data-time-to-elapse" class="form-control"
                         maxlength="5" />
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="data-reported-cases" class="font-weight-bold">reportedCases:</label>
                     <input type="text" data-reported-cases="" id="data-reported-cases" class="form-control"
                         maxlength="15" />
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="data-total-hospital-beds" class="font-weight-bold">totalHospitalBeds:</label>
                     <input type="text" data-total-hospital-beds="" id="data-total-hospital-beds" class="form-control"
                         maxlength="15" />
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-3 col-6">
                 <div class="form-group">
                     <label for="data-period-type" class="font-weight-bold">periodType:</label>
                     <select data-period-type="" id="data-period-type" class="form-control">
@@ -98,7 +99,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <input type="submit" data-go-estimate="" id="data-go-estimate" class="btn btn-danger" value="Submit" />
             </div>
         </div>
