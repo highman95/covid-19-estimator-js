@@ -38,7 +38,7 @@
     "eslint-plugin-import": "^2.20.1",
     "jest": "^25.2.0",
     "nodemon": "^2.0.3",
-    "properties-reader": "^1.0.0",
+    "properties-reader": "^2.2.0",
     "puppeteer": "^2.1.1"
   },
   "browserslist": [
